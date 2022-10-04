@@ -17,7 +17,7 @@ export default function App() {
   };
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
     <>
@@ -37,6 +37,7 @@ export default function App() {
           {/* TODO: Add routes here  */}
           <Route path="/" element={<ContactsList contacts={contacts} />} />
           <Route path="/contacts/add" element={<ContactsAdd contacts={contacts} setContacts={setContacts}/>} />
+          <Route path="/contacts/:id" element={<ContactsView />} />
         </Routes>
       </main>
     </>
