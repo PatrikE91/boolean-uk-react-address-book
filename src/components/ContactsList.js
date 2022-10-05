@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import DeleteContact from "./DeleteContact";
 
 function ContactsList(props) {
   //"contacts" must be passed as prop to this component

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function ContactsAdd(props) {
   // setContacts and contacts must be passed as props
@@ -30,8 +29,8 @@ function ContactsAdd(props) {
   //send POST to json server on form submit
   const onSubmitt = (e) => {
     e.preventDefault();
-    
-    console.log(contact)
+
+    console.log(contact);
     if (contact.length) {
       fetch(url + id, {
         method: "PATCH",
@@ -50,7 +49,7 @@ function ContactsAdd(props) {
       })
         .then((res) => res.json())
         .then((data) => {
-         const newContacts = contacts.filter((element) => {
+          const newContacts = contacts.filter((element) => {
             return element.id !== parseInt(id);
           });
           setContacts([...newContacts, data]);
@@ -90,37 +89,34 @@ function ContactsAdd(props) {
 
       <label htmlFor="firstName">First Name:</label>
 
-     
-        <input
-          name="firstName"
-          type="text"
-          defaultValue={contact.length? contact[0].firstName : null}
-          required
-          onChange={(e) =>
-            setNewContact({ ...newContact, firstName: e.target.value })
-          }
-        />
-
+      <input
+        name="firstName"
+        type="text"
+        defaultValue={contact.length ? contact[0].firstName : null}
+        required
+        onChange={(e) =>
+          setNewContact({ ...newContact, firstName: e.target.value })
+        }
+      />
 
       <label htmlFor="lastName">Last Name:</label>
       <input
         id="lastName"
         name="lastName"
         type="text"
-        defaultValue={contact.length? contact[0].lastName : null}
+        defaultValue={contact.length ? contact[0].lastName : null}
         required
         onChange={(e) =>
           setNewContact({ ...newContact, lastName: e.target.value })
         }
       />
-      
 
       <label htmlFor="street">Street:</label>
       <input
         id="street"
         name="street"
         type="text"
-        defaultValue={contact.length? contact[0].street : null}
+        defaultValue={contact.length ? contact[0].street : null}
         required
         onChange={(e) =>
           setNewContact({ ...newContact, street: e.target.value })
@@ -132,7 +128,7 @@ function ContactsAdd(props) {
         id="city"
         name="city"
         type="text"
-        defaultValue={contact.length? contact[0].ctty : null}
+        defaultValue={contact.length ? contact[0].ctty : null}
         required
         onChange={(e) => setNewContact({ ...newContact, city: e.target.value })}
       />
@@ -142,7 +138,7 @@ function ContactsAdd(props) {
         id="email"
         name="email"
         type="text"
-        defaultValue={contact.length? contact[0].email : null}
+        defaultValue={contact.length ? contact[0].email : null}
         onChange={(e) =>
           setNewContact({ ...newContact, email: e.target.value })
         }
@@ -153,7 +149,7 @@ function ContactsAdd(props) {
         id="linkedIn"
         name="linkedIn"
         type="text"
-        defaultValue={contact.length? contact[0].linkedIn : null}
+        defaultValue={contact.length ? contact[0].linkedIn : null}
         onChange={(e) =>
           setNewContact({ ...newContact, linkedIn: e.target.value })
         }
@@ -164,14 +160,14 @@ function ContactsAdd(props) {
         id="twitter"
         name="twitter"
         type="text"
-        defaultValue={contact.length? contact[0].twitter : null}
+        defaultValue={contact.length ? contact[0].twitter : null}
         onChange={(e) =>
           setNewContact({ ...newContact, twitter: e.target.value })
         }
       />
 
       <div className="actions-section">
-        <button className="button blue" onClick={() => navigate('/')}>
+        <button className="button blue" onClick={() => navigate("/")}>
           Back
         </button>
         <button className="button blue" type="submit">
