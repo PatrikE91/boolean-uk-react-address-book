@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function ContactsAdd(props) {
   // setContacts and contacts must be passed as props
@@ -7,8 +8,9 @@ function ContactsAdd(props) {
   // state
   const { setContacts, contacts } = props;
   const navigate = useNavigate();
-  const url = "http://localhost:4000/contacts";
-  console.log(contacts);
+  const { id } = useParams();
+  const url = "http://localhost:4000/contacts/";
+  // console.log(contacts);
   const [newContact, setNewContact] = useState({
     id: "",
     firstName: "",
@@ -20,56 +22,101 @@ function ContactsAdd(props) {
     twitter: "",
   });
 
+  const contact = contacts.filter((element) => {
+    return element.id === parseInt(id);
+  });
+
   //TODO: Implement controlled form
   //send POST to json server on form submit
   const onSubmitt = (e) => {
     e.preventDefault();
-    console.log(newContact);
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: "",
-        firstName: newContact.firstName,
-        lastName: newContact.lastName,
-        street: newContact.street,
-        city: newContact.city,
-        email: newContact.email,
-        linkedIn: newContact.linkedIn,
-        twitter: newContact.twitter
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setContacts([...contacts, data]);
-        navigate("/");
-        console.log("contacts", data);
-      });
+    
+    if (contact[0].id === parseInt(id)) {
+      fetch(url + id, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: newContact.firstName,
+          lastName: newContact.lastName,
+          street: newContact.street,
+          city: newContact.city,
+          email: newContact.email,
+          linkedIn: newContact.linkedIn,
+          twitter: newContact.twitter,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+         const newContacts = contacts.filter((element) => {
+            return element.id !== parseInt(id);
+          });
+          setContacts([...newContacts, data]);
+          // console.log("data", data);
+          // console.log(newContacts)
+          navigate("/");
+        });
+    } else {
+      console.log("non so nulla");
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: "",
+          firstName: newContact.firstName,
+          lastName: newContact.lastName,
+          street: newContact.street,
+          city: newContact.city,
+          email: newContact.email,
+          linkedIn: newContact.linkedIn,
+          twitter: newContact.twitter,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setContacts([...contacts, data]);
+          navigate("/");
+          console.log("contacts", data);
+        });
+    }
   };
   return (
     <form className="form-stack contact-form" onSubmit={onSubmitt}>
       <h2>Create Contact</h2>
 
-      <label htmlFor="firstName">First Name</label>
+      <label htmlFor="firstName">First Name:</label>
 
-      <input
-        id="firstName"
-        name="firstName"
-        type="text"
-        required
-        onChange={(e) =>
-          setNewContact({ ...newContact, firstName: e.target.value })
-        }
-      />
+      {contact.length ? (
+        <input
+          name="firstName"
+          type="text"
+          defaultValue={contact[0].firstName}
+          required
+          onChange={(e) =>
+            setNewContact({ ...newContact, firstName: e.target.value })
+          }
+        />
+      ) : (
+        <input
+          name="firstName"
+          type="text"
+          required
+          onChange={(e) =>
+            setNewContact({ ...newContact, firstName: e.target.value })
+          }
+        />
+      )}
 
+      
       <label htmlFor="lastName">Last Name:</label>
       <input
         id="lastName"
         name="lastName"
         type="text"
+        defaultValue={contact[0].lastName}
         required
         onChange={(e) =>
           setNewContact({ ...newContact, lastName: e.target.value })
@@ -81,6 +128,7 @@ function ContactsAdd(props) {
         id="street"
         name="street"
         type="text"
+        defaultValue={contact[0].street}
         required
         onChange={(e) =>
           setNewContact({ ...newContact, street: e.target.value })
@@ -92,6 +140,7 @@ function ContactsAdd(props) {
         id="city"
         name="city"
         type="text"
+        defaultValue={contact[0].city}
         required
         onChange={(e) => setNewContact({ ...newContact, city: e.target.value })}
       />
@@ -101,7 +150,7 @@ function ContactsAdd(props) {
         id="email"
         name="email"
         type="text"
-        required
+        defaultValue={contact[0].email}
         onChange={(e) =>
           setNewContact({ ...newContact, email: e.target.value })
         }
@@ -112,7 +161,7 @@ function ContactsAdd(props) {
         id="linkedIn"
         name="linkedIn"
         type="text"
-        required
+        defaultValue={contact[0].linkedIn}
         onChange={(e) =>
           setNewContact({ ...newContact, linkedIn: e.target.value })
         }
@@ -123,13 +172,16 @@ function ContactsAdd(props) {
         id="twitter"
         name="twitter"
         type="text"
-        required
+        defaultValue={contact[0].twitter}
         onChange={(e) =>
           setNewContact({ ...newContact, twitter: e.target.value })
         }
       />
 
       <div className="actions-section">
+        <button className="button blue" onClick={() => navigate('/')}>
+          Back
+        </button>
         <button className="button blue" type="submit">
           Create
         </button>
