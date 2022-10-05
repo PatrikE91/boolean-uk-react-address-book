@@ -27,12 +27,12 @@ function ContactsAdd(props) {
 
   //TODO: Implement controlled form
   //send POST to json server on form submit
-  const onSubmitt = (e) => {
+  const onSubmitEvent = (e) => {
     e.preventDefault();
 
     console.log(contact);
     if (contact.length) {
-      fetch(url + id, {
+      fetch(url , {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -73,6 +73,7 @@ function ContactsAdd(props) {
           email: newContact.email,
           linkedIn: newContact.linkedIn,
           twitter: newContact.twitter,
+          meetings: []
         }),
       })
         .then((res) => res.json())
@@ -84,7 +85,7 @@ function ContactsAdd(props) {
     }
   };
   return (
-    <form className="form-stack contact-form" onSubmit={onSubmitt}>
+    <form className="form-stack contact-form" onSubmit={onSubmitEvent}>
       <h2>Create Contact</h2>
 
       <label htmlFor="firstName">First Name:</label>

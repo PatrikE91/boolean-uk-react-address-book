@@ -1,6 +1,6 @@
 const Meetings = (props) => {
   const { contact } = props;
-    console.log(contact.meetings)
+    console.log(contact)
   return (
     <ul>
       {contact.meetings.length > 0? (contact.meetings.map((meeting) => {

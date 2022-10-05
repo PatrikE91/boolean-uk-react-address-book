@@ -5,6 +5,7 @@ import ContactsAdd from "./components/ContactsAdd";
 import ContactsView from "./components/ContactsView";
 import "./styles/styles.css";
 import DeleteContact from "./components/DeleteContact";
+import AddMeeting from "./components/AddMeeting";
 
 export default function App() {
   const [contacts, setContacts] = useState([]);
@@ -42,6 +43,7 @@ export default function App() {
           <Route exact path="/contacts/:id/edit" element={<ContactsAdd contacts={contacts} setContacts={setContacts}/>} />
           <Route path="/contacts/:id" element={<ContactsView />} />
           <Route path="/contacts/:id/delete" element={<DeleteContact contacts={contacts} setContacts={setContacts}/>} />
+          <Route path="/contacts/:id/meeting" element={<AddMeeting />} />
         </Routes>
       </main>
     </>

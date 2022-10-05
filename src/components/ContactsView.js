@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Meetings from "./Meetings";
 
 function ContactsView() {
@@ -28,23 +28,25 @@ function ContactsView() {
 
   return (
     <>
-    <div>
-      <h2>
-        {contact.firstName} {contact.lastName}
-      </h2>
-      <p>
-        {contact.street} {contact.city}
-      </p>
-      <p>{contact.email}</p>
-      <p>{contact.twitter}</p>
-      <p>{contact.linkedIn}</p>
-    </div>
-    <h2>
-      Meetings:
-    </h2>
-    
-      {<Meetings contact={contact}/>}
-      <button>Add Meeting</button>
+      <div>
+        <h2>
+          {contact.firstName} {contact.lastName}
+        </h2>
+        <p>
+          {contact.street} {contact.city}
+        </p>
+        <p>{contact.email}</p>
+        <p>{contact.twitter}</p>
+        <p>{contact.linkedIn}</p>
+      </div>
+      <h2>Meetings:</h2>
+
+      {<Meetings contact={contact} />}
+      <button>
+        <Link to={`/contacts/${contact.id}/meeting`} state={contact}>
+          Add Meeting
+        </Link>
+      </button>
     </>
   );
 }
