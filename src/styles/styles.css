@@ -38,6 +38,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   padding:10px;
+  background-color: wheat;
 }
 
 /* Make images easier to work with */
@@ -155,4 +156,11 @@ h2 {
 
 .edit-button{
   padding-left: 20px;
+}
+.delete-button{
+  margin-left: 30px;
+  background-color: aquamarine;
+}
+a{
+  text-decoration: none;
 }

@@ -31,7 +31,8 @@ function ContactsAdd(props) {
   const onSubmitt = (e) => {
     e.preventDefault();
     
-    if (contact[0].id === parseInt(id)) {
+    console.log(contact)
+    if (contact.length) {
       fetch(url + id, {
         method: "PATCH",
         headers: {
@@ -89,46 +90,37 @@ function ContactsAdd(props) {
 
       <label htmlFor="firstName">First Name:</label>
 
-      {contact.length ? (
+     
         <input
           name="firstName"
           type="text"
-          defaultValue={contact[0].firstName}
+          defaultValue={contact.length? contact[0].firstName : null}
           required
           onChange={(e) =>
             setNewContact({ ...newContact, firstName: e.target.value })
           }
         />
-      ) : (
-        <input
-          name="firstName"
-          type="text"
-          required
-          onChange={(e) =>
-            setNewContact({ ...newContact, firstName: e.target.value })
-          }
-        />
-      )}
 
-      
+
       <label htmlFor="lastName">Last Name:</label>
       <input
         id="lastName"
         name="lastName"
         type="text"
-        defaultValue={contact[0].lastName}
+        defaultValue={contact.length? contact[0].lastName : null}
         required
         onChange={(e) =>
           setNewContact({ ...newContact, lastName: e.target.value })
         }
       />
+      
 
       <label htmlFor="street">Street:</label>
       <input
         id="street"
         name="street"
         type="text"
-        defaultValue={contact[0].street}
+        defaultValue={contact.length? contact[0].street : null}
         required
         onChange={(e) =>
           setNewContact({ ...newContact, street: e.target.value })
@@ -140,7 +132,7 @@ function ContactsAdd(props) {
         id="city"
         name="city"
         type="text"
-        defaultValue={contact[0].city}
+        defaultValue={contact.length? contact[0].ctty : null}
         required
         onChange={(e) => setNewContact({ ...newContact, city: e.target.value })}
       />
@@ -150,7 +142,7 @@ function ContactsAdd(props) {
         id="email"
         name="email"
         type="text"
-        defaultValue={contact[0].email}
+        defaultValue={contact.length? contact[0].email : null}
         onChange={(e) =>
           setNewContact({ ...newContact, email: e.target.value })
         }
@@ -161,7 +153,7 @@ function ContactsAdd(props) {
         id="linkedIn"
         name="linkedIn"
         type="text"
-        defaultValue={contact[0].linkedIn}
+        defaultValue={contact.length? contact[0].linkedIn : null}
         onChange={(e) =>
           setNewContact({ ...newContact, linkedIn: e.target.value })
         }
@@ -172,7 +164,7 @@ function ContactsAdd(props) {
         id="twitter"
         name="twitter"
         type="text"
-        defaultValue={contact[0].twitter}
+        defaultValue={contact.length? contact[0].twitter : null}
         onChange={(e) =>
           setNewContact({ ...newContact, twitter: e.target.value })
         }

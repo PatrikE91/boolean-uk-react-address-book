@@ -18,7 +18,7 @@ export default function App() {
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [contacts]);
 
   return (
     <>
@@ -41,7 +41,7 @@ export default function App() {
 
           <Route exact path="/contacts/:id/edit" element={<ContactsAdd contacts={contacts} setContacts={setContacts}/>} />
           <Route path="/contacts/:id" element={<ContactsView />} />
-          <Route path="/contacts/:id/delete" element={<DeleteContact />} />
+          <Route path="/contacts/:id/delete" element={<DeleteContact contacts={contacts} setContacts={setContacts}/>} />
         </Routes>
       </main>
     </>

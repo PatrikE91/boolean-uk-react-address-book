@@ -2,28 +2,32 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const DeleteContact = (props) => {
-  const { contact } = props;
+  const { contacts , setContacts} = props;
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log(contact);
+
+  const contact = contacts.filter((element) => {
+    return element.id === parseInt(id);
+  });
 
   const handleEvent = () => {
-      fetch("http://localhost:4000/contacts/" + id, {
-        method: "DELETE",
-      }).then(res = res.json())
-      .then(data => {
-        navigate('/')
-      })
-
-  }
+    fetch("http://localhost:4000/contacts/" + id, {
+      method: "DELETE",
+    })
+      .then(res => res.json())
+      .then((data) => {
+        setContacts(contacts)
+        navigate("/");
+      });
+  };
 
   return (
     <>
       <h2>
-        Do you want to delete {contact.firstName} {contact.lastName}?
+        Do you want to delete {contact[0].firstName} {contact[0].lastName}?
       </h2>
-      <button onClick={() => handleEvent()}>Yes</button>
-      <button onClick={() => navigate('/')}>no</button>
+      <button className="delete-button" onClick={() => handleEvent()}>Yes</button>
+      <button className="delete-button" onClick={() => navigate("/")}>no</button>
     </>
   );
 };
