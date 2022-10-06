@@ -24,8 +24,6 @@ const AddMeeting = () => {
       .then((res) => res.json())
       .then((data) => {
         navigate("/");
-        console.log("contacts", data);
-        console.log("contacts", meeting);
       });
   };
 

@@ -195,7 +195,7 @@ a:visited{
   text-decoration: none;
 
 }
-.button {
+.button, .delete-button {
   text-decoration: none;
   background-color: #05386b;
   border: 1px solid #379683;
@@ -211,6 +211,7 @@ a:visited{
   position: relative;
   text-align: center;
   vertical-align: middle;
+  margin-right: 5px;
 }
 
 .button:hover {
@@ -228,4 +229,29 @@ button:active{
 .personal{
   background-color: #379683;
  color: #edf5e1;
+ border-radius: 5px;
+
+}
+
+.contact-name{
+  margin-left: 5px;
+}
+
+.star{
+  margin-right: 10px;
+  height: 20px;
+  width: 20px;
+}
+
+.radio{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 110px;
+}
+.radio input{
+  height: 14px;
+}
+
+.delete-meeting{
+  margin-left: 20px;
 }

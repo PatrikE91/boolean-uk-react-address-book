@@ -4,7 +4,7 @@ import Meetings from "./Meetings";
 
 function ContactsView() {
   const [contact, setContact] = useState(false);
-  const [meetings, setMeetings] = useState('')
+  const [meetings, setMeetings] = useState("");
   const { id } = useParams();
   //TODO: Get the contact to load from the params and fetch.
   //With useEffect, load the contact when params changes
@@ -23,8 +23,6 @@ function ContactsView() {
       .then((res) => res.json())
       .then((data) => {
         setMeetings(data);
-    console.log('data',data)
-
       });
   }, []);
 
@@ -36,7 +34,6 @@ function ContactsView() {
       </>
     );
   }
-
 
   return (
     <>
@@ -52,7 +49,6 @@ function ContactsView() {
         <p>{contact.linkedIn}</p>
       </div>
       <h2>Meetings:</h2>
-
       {<Meetings meetings={meetings} />}
       <button className="button blue">
         <Link to={`/contacts/${contact.id}/meeting`} state={contact}>

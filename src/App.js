@@ -12,6 +12,36 @@ export default function App() {
 
   //TODO: Load all contacts on useEffect when component first renders
 
+  const sortFavorites = () => {};
+
+  const getData = () => {
+    fetch(`http://localhost:4000/contacts`)
+      .then((res) => res.json())
+      .then((data) => {
+        const trueFirst = data.sort(
+          (a, b) => Number(b.favorite) - Number(a.favorite)
+        );
+        setContacts(trueFirst);
+      });
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const filterBy = (filters) => {
+    fetch(`http://localhost:4000/contacts`)
+      .then((res) => res.json())
+      .then((data) => {
+        const newContacts = data.filter((contact) => {
+          if (typeof filters === "string") {
+            return contact.type === filters;
+          } else {
+            return contact.favorite;
+          }
+        });
+        return setContacts(newContacts);
+      });
+  };
   const sortBy = (parameter) => {
     const compare = (a, b) => {
       let nameA;
@@ -30,45 +60,29 @@ export default function App() {
     setContacts(sortedContacts);
   };
 
-  const getData = () => {
-    fetch(`http://localhost:4000/contacts`)
-      .then((res) => res.json())
-      .then((data) => {
-        setContacts(data);
-      });
-  };
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const filterBy = (filter) => {
-    fetch(`http://localhost:4000/contacts`)
-      .then((res) => res.json())
-      .then((data) => {
-        const newContacts = data.filter((contact) => contact.type === filter);
-        return setContacts(newContacts);
-      });
-  };
-
   return (
     <>
       <nav>
         <h2>Menu</h2>
         <ul>
           {/* TODO: Make these links */}
-          <li >
-            <Link className="main-link" to="/">Contacts List</Link>
+          <li>
+            <Link className="main-link" to="/">
+              Contacts List
+            </Link>
           </li>
 
-          <li >
-            <Link className="main-link" to="/contacts/add">Add New Contact</Link>
+          <li>
+            <Link className="main-link" to="/contacts/add">
+              Add New Contact
+            </Link>
           </li>
         </ul>
         <h2>Filters:</h2>
         <ul>
           <li onClick={() => filterBy("personal")}>Personal</li>
           <li onClick={() => filterBy("work")}>Work</li>
-          <li>Favorites</li>
+          <li onClick={() => filterBy(true)}>Favorites</li>
           <li onClick={() => getData()}>All</li>
         </ul>
         <h2>Sort by:</h2>
@@ -80,7 +94,12 @@ export default function App() {
       <main>
         <Routes>
           {/* TODO: Add routes here  */}
-          <Route path="/" element={<ContactsList contacts={contacts} />} />
+          <Route
+            path="/"
+            element={
+              <ContactsList contacts={contacts} setContacts={setContacts} />
+            }
+          />
           <Route
             exact
             path="/contacts/add"

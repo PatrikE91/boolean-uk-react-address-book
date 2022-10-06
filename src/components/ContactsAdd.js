@@ -9,7 +9,6 @@ function ContactsAdd(props) {
   const navigate = useNavigate();
   const { id } = useParams();
   const url = "http://localhost:4000/contacts/";
-  // console.log(contacts);
   const [newContact, setNewContact] = useState({
     id: "",
     firstName: "",
@@ -24,15 +23,14 @@ function ContactsAdd(props) {
   const contact = contacts.filter((element) => {
     return element.id === parseInt(id);
   });
-  console.log(contacts);
+
   //TODO: Implement controlled form
   //send POST to json server on form submit
   const onSubmitEvent = (e) => {
     e.preventDefault();
 
-    console.log(contact);
     if (contact.length) {
-      fetch(url , {
+      fetch(url, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -53,12 +51,9 @@ function ContactsAdd(props) {
             return element.id !== parseInt(id);
           });
           setContacts([...newContacts, data]);
-          // console.log("data", data);
-          // console.log(newContacts)
           navigate("/");
         });
     } else {
-      console.log("non so nulla");
       fetch(url, {
         method: "POST",
         headers: {
@@ -73,14 +68,14 @@ function ContactsAdd(props) {
           city: newContact.city,
           email: newContact.email,
           linkedIn: newContact.linkedIn,
-          twitter: newContact.twitter
+          twitter: newContact.twitter,
+          favorite: false,
         }),
       })
         .then((res) => res.json())
         .then((data) => {
           setContacts([...contacts, data]);
           navigate("/");
-          console.log("contacts", data);
         });
     }
   };
@@ -113,18 +108,30 @@ function ContactsAdd(props) {
       />
 
       <label htmlFor="type">Type:</label>
-      <div className="radio"> 
-      <p>Personal</p> 
-      <input required name="type" type="radio" value='personal' onClick={(e) =>
-          setNewContact({ ...newContact, type: e.target.value })}/>
-      </div>
       <div className="radio">
+        <p>Personal</p>
+        <input
+          required
+          name="type"
+          type="radio"
+          value="personal"
+          onClick={(e) =>
+            setNewContact({ ...newContact, type: e.target.value })
+          }
+        />
         <p>Work</p>
-      <input required name="type" type="radio" value='work' onClick={(e) =>
-          setNewContact({ ...newContact, type: e.target.value })}/>
+        <input
+          required
+          name="type"
+          type="radio"
+          value="work"
+          onClick={(e) =>
+            setNewContact({ ...newContact, type: e.target.value })
+          }
+        />
       </div>
 
-      <label htmlFor="street">Street:</label> 
+      <label htmlFor="street">Street:</label>
       <input
         id="street"
         name="street"

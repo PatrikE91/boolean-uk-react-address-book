@@ -6,7 +6,8 @@
       "lastName": "Carmack",
       "street": "10 Keen Street",
       "city": "Rome",
-      "type": "work"
+      "type": "work",
+      "favorite": false
     },
     {
       "id": 2,
@@ -14,38 +15,48 @@
       "lastName": "Hopper",
       "street": "32 Deebug Road",
       "city": "Tokyo",
-      "type": "work"
+      "type": "work",
+      "favorite": false
     },
     {
       "id": 3,
-      "firstName": "Patrik",
-      "lastName": "Ellini",
-      "type": "personal",
-      "street": "Flat 23 Palmer house, Mornington Avenue",
-      "city": "London",
-      "email": "pk815@hotmail.it",
+      "firstName": "Barack",
+      "lastName": "Obama",
+      "type": "work",
+      "street": "1600 Pennsylvania Avenue ",
+      "city": "Washington, DC",
+      "email": "",
       "linkedIn": "",
-      "twitter": ""
+      "twitter": "",
+      "favorite": true
     },
     {
       "id": 4,
-      "firstName": "Alessandro",
-      "lastName": "Ellini",
+      "firstName": "Quentin",
+      "lastName": "Tarantino",
       "type": "personal",
-      "street": "Flat 23 Palmer house, Mornington Avenue",
-      "city": "London",
-      "email": "pk815@hotmail.it",
+      "street": "42, Milky Way",
+      "city": "Manhattan",
+      "email": "quentin@outlook.com",
       "linkedIn": "",
-      "twitter": ""
+      "twitter": "",
+      "favorite": false
     }
   ],
   "meetings": [
     {
-      "contactId": "4",
+      "contactId": "3",
       "time": "12",
       "date": "02/01/2022",
-      "location": "london",
+      "location": "London",
       "id": 1
+    },
+    {
+      "contactId": "3",
+      "time": "4pm",
+      "date": "02/01/2023",
+      "location": "Milan",
+      "id": 2
     }
   ]
 }
