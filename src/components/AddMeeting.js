@@ -1,25 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AddMeeting = () => {
   const [meeting, setMeeting] = useState({ date: "", time: "", location: "" });
   const navigate = useNavigate();
   const { id } = useParams();
-  const url = "http://localhost:4000/contacts/" + id;
+  const url = "http://localhost:4000/meetings/";
 
   const onSubmitEvent = (e) => {
     e.preventDefault();
     fetch(url, {
-      method: "PATCH",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        meetings: [{
-            time: meeting.time,
-            date: meeting.date,
-            location: meeting.location
-        }]
+        contactId: id,
+        time: meeting.time,
+        date: meeting.date,
+        location: meeting.location,
       }),
     })
       .then((res) => res.json())
@@ -27,7 +26,6 @@ const AddMeeting = () => {
         navigate("/");
         console.log("contacts", data);
         console.log("contacts", meeting);
-
       });
   };
 

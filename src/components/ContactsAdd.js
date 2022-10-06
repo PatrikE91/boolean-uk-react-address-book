@@ -68,12 +68,12 @@ function ContactsAdd(props) {
           id: "",
           firstName: newContact.firstName,
           lastName: newContact.lastName,
+          type: newContact.type,
           street: newContact.street,
           city: newContact.city,
           email: newContact.email,
           linkedIn: newContact.linkedIn,
-          twitter: newContact.twitter,
-          meetings: []
+          twitter: newContact.twitter
         }),
       })
         .then((res) => res.json())
@@ -112,7 +112,10 @@ function ContactsAdd(props) {
         }
       />
 
-      <label htmlFor="street">Street:</label>
+      <label htmlFor="type">Type:</label>
+      <input name="type" type="checkbox" />
+
+      <label htmlFor="street">Street:</label> 
       <input
         id="street"
         name="street"

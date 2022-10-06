@@ -6,7 +6,7 @@
       "lastName": "Carmack",
       "street": "10 Keen Street",
       "city": "London",
-      "meetings": []
+      "type": "work"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "lastName": "Hopper",
       "street": "32 Deebug Road",
       "city": "London",
-      "meetings": []
+      "type": "work"
     },
     {
       "id": 3,
@@ -25,10 +25,8 @@
       "email": "pk815@hotmail.it",
       "linkedIn": "",
       "twitter": "",
-      "meetings": [{
-        "date":"22/10/22",
-        "time": "12am",
-        "location": "London"}]
+      "type": "personal"
     }
-  ]
+  ],
+  "meetings": []
 }

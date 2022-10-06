@@ -20,12 +20,12 @@ function ContactsList(props) {
               </p>
               <p>
                 {/** TODO: Make a Link here to view contact */}
-                <button>
+                <button className="button blue">
                   <Link to={`/contacts/${contact.id}`} state={contact}>
                     View
                   </Link>
                 </button>
-                <button className="edit-button">
+                <button className="button">
                   <Link
                     
                     to={`/contacts/${contact.id}/edit`}
@@ -34,7 +34,7 @@ function ContactsList(props) {
                     Edit
                   </Link>
                 </button>
-                <button className="button blue">
+                <button className="button">
                   <Link to={`/contacts/${contact.id}/delete`} state={contact}>Delete</Link>
                 </button>
               </p>

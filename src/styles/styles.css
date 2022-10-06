@@ -49,7 +49,6 @@ img {
 
 /* Inherit fonts for inputs and buttons */
 input,
-button,
 textarea,
 select {
   font: inherit;
@@ -154,13 +153,13 @@ h2 {
 }
 
 
-.edit-button{
+/* .edit-button{
   padding-left: 20px;
 }
 .delete-button{
   margin-left: 30px;
   background-color: aquamarine;
-}
+} */
 a{
   text-decoration: none;
 }
@@ -189,4 +188,25 @@ a{
   }
 }
 
+
+button {
+  background-color: rgb(240, 231, 188);
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(98, 227, 227, 0.5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #40c0c0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 29px;
+  padding: 0 10px 0 11px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.button:hover {
+  background-color: #f7fafa;
+}
 

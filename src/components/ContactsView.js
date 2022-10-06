@@ -4,6 +4,7 @@ import Meetings from "./Meetings";
 
 function ContactsView() {
   const [contact, setContact] = useState(false);
+  const [meetings, setMeetings] = useState('')
   const { id } = useParams();
   //TODO: Get the contact to load from the params and fetch.
   //With useEffect, load the contact when params changes
@@ -17,6 +18,16 @@ function ContactsView() {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`http://localhost:4000/meetings?contactId=` + id)
+      .then((res) => res.json())
+      .then((data) => {
+        setMeetings(data);
+    console.log('data',data)
+
+      });
+  }, []);
+
   if (!contact) {
     return (
       <>
@@ -25,6 +36,7 @@ function ContactsView() {
       </>
     );
   }
+
 
   return (
     <>
@@ -41,7 +53,7 @@ function ContactsView() {
       </div>
       <h2>Meetings:</h2>
 
-      {<Meetings contact={contact} />}
+      {<Meetings meetings={meetings} />}
       <button>
         <Link to={`/contacts/${contact.id}/meeting`} state={contact}>
           Add Meeting
