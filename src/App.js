@@ -12,14 +12,43 @@ export default function App() {
 
   //TODO: Load all contacts on useEffect when component first renders
 
+  const sortBy = (parameter) => {
+    const compare = (a, b) => {
+      let nameA;
+      let nameB;
+      if (parameter === "firstName") {
+        nameA = a.firstName.toLowerCase();
+        nameB = b.firstName.toLowerCase();
+      }
+      if (parameter === "lastName") {
+        nameA = a.lastName.toLowerCase();
+        nameB = b.lastName.toLowerCase();
+      }
+      return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
+    };
+    const sortedContacts = contacts.slice().sort(compare);
+    setContacts(sortedContacts);
+  };
+
   const getData = () => {
     fetch(`http://localhost:4000/contacts`)
       .then((res) => res.json())
-      .then((data) => setContacts(data));
+      .then((data) => {
+        setContacts(data);
+      });
   };
   useEffect(() => {
     getData();
   }, []);
+
+  const filterBy = (filter) => {
+    fetch(`http://localhost:4000/contacts`)
+      .then((res) => res.json())
+      .then((data) => {
+        const newContacts = data.filter((contact) => contact.type === filter);
+        return setContacts(newContacts);
+      });
+  };
 
   return (
     <>
@@ -27,22 +56,53 @@ export default function App() {
         <h2>Menu</h2>
         <ul>
           {/* TODO: Make these links */}
-          <li>
-            <Link to="/">Contacts List</Link>
+          <li >
+            <Link className="main-link" to="/">Contacts List</Link>
           </li>
-            
-          <li><Link to='/contacts/add'>Add New Contact</Link></li>
+
+          <li >
+            <Link className="main-link" to="/contacts/add">Add New Contact</Link>
+          </li>
+        </ul>
+        <h2>Filters:</h2>
+        <ul>
+          <li onClick={() => filterBy("personal")}>Personal</li>
+          <li onClick={() => filterBy("work")}>Work</li>
+          <li>Favorites</li>
+          <li onClick={() => getData()}>All</li>
+        </ul>
+        <h2>Sort by:</h2>
+        <ul>
+          <li onClick={() => sortBy("firstName")}>Name</li>
+          <li onClick={() => sortBy("lastName")}>Surname</li>
         </ul>
       </nav>
       <main>
         <Routes>
           {/* TODO: Add routes here  */}
           <Route path="/" element={<ContactsList contacts={contacts} />} />
-          <Route exact path="/contacts/add" element={<ContactsAdd contacts={contacts} setContacts={setContacts}/>} />
+          <Route
+            exact
+            path="/contacts/add"
+            element={
+              <ContactsAdd contacts={contacts} setContacts={setContacts} />
+            }
+          />
 
-          <Route exact path="/contacts/:id/edit" element={<ContactsAdd contacts={contacts} setContacts={setContacts}/>} />
+          <Route
+            exact
+            path="/contacts/:id/edit"
+            element={
+              <ContactsAdd contacts={contacts} setContacts={setContacts} />
+            }
+          />
           <Route path="/contacts/:id" element={<ContactsView />} />
-          <Route path="/contacts/:id/delete" element={<DeleteContact contacts={contacts} setContacts={setContacts}/>} />
+          <Route
+            path="/contacts/:id/delete"
+            element={
+              <DeleteContact contacts={contacts} setContacts={setContacts} />
+            }
+          />
           <Route path="/contacts/:id/meeting" element={<AddMeeting />} />
         </Routes>
       </main>

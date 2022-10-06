@@ -16,8 +16,12 @@ const DeleteContact = (props) => {
     })
       .then(res => res.json())
       .then((data) => {
-        setContacts(contacts)
+        const newContacts = contacts.filter((element) => {
+          return element.id !== parseInt(id);
+        });
         navigate("/");
+        setContacts(newContacts)
+
       });
   };
 

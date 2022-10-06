@@ -54,7 +54,7 @@ function ContactsView() {
       <h2>Meetings:</h2>
 
       {<Meetings meetings={meetings} />}
-      <button>
+      <button className="button blue">
         <Link to={`/contacts/${contact.id}/meeting`} state={contact}>
           Add Meeting
         </Link>

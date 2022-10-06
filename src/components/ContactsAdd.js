@@ -24,7 +24,7 @@ function ContactsAdd(props) {
   const contact = contacts.filter((element) => {
     return element.id === parseInt(id);
   });
-
+  console.log(contacts);
   //TODO: Implement controlled form
   //send POST to json server on form submit
   const onSubmitEvent = (e) => {
@@ -113,7 +113,16 @@ function ContactsAdd(props) {
       />
 
       <label htmlFor="type">Type:</label>
-      <input name="type" type="checkbox" />
+      <div className="radio"> 
+      <p>Personal</p> 
+      <input required name="type" type="radio" value='personal' onClick={(e) =>
+          setNewContact({ ...newContact, type: e.target.value })}/>
+      </div>
+      <div className="radio">
+        <p>Work</p>
+      <input required name="type" type="radio" value='work' onClick={(e) =>
+          setNewContact({ ...newContact, type: e.target.value })}/>
+      </div>
 
       <label htmlFor="street">Street:</label> 
       <input

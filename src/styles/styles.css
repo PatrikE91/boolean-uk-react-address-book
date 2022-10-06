@@ -38,7 +38,8 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   padding:10px;
-  background-color: wheat;
+  background-color: #5cdb95;
+  color: #05386b;
 }
 
 /* Make images easier to work with */
@@ -152,15 +153,10 @@ h2 {
   font-size: 1.15rem;
 }
 
-
-/* .edit-button{
-  padding-left: 20px;
+.main-link{
+  text-decoration: none;
 }
-.delete-button{
-  margin-left: 30px;
-  background-color: aquamarine;
-} */
-a{
+.main-link :visited{
   text-decoration: none;
 }
 
@@ -188,14 +184,25 @@ a{
   }
 }
 
+a {
+  text-decoration: none;
+  color: #edf5e1;
+}
+.main-link{
+  color: #05386b;
+}
+a:visited{
+  text-decoration: none;
 
-button {
-  background-color: rgb(240, 231, 188);
-  border: 1px solid #d5d9d9;
+}
+.button {
+  text-decoration: none;
+  background-color: #05386b;
+  border: 1px solid #379683;
   border-radius: 8px;
-  box-shadow: rgba(98, 227, 227, 0.5) 0 2px 5px 0;
+  box-shadow: #edf5e1;
   box-sizing: border-box;
-  color: #40c0c0;
+  color: #edf5e1;
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
@@ -207,6 +214,18 @@ button {
 }
 
 .button:hover {
-  background-color: #f7fafa;
+  background-color: #8ee4af;
+}
+button:active{
+  text-decoration: none;
 }
 
+
+.work{
+  background-color: #8ee4af;
+  border-radius: 5px;
+}
+.personal{
+  background-color: #379683;
+ color: #edf5e1;
+}

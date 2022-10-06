@@ -14,14 +14,14 @@ function ContactsList(props) {
         {contacts.map((contact, index) => {
           const { firstName, lastName } = contact;
           return (
-            <li className="contact" key={index}>
+            <li className={contact.type ==='work' ? 'contact work' : 'contact personal'} key={index} >
               <p>
                 {firstName} {lastName}
               </p>
               <p>
                 {/** TODO: Make a Link here to view contact */}
                 <button className="button blue">
-                  <Link to={`/contacts/${contact.id}`} state={contact}>
+                  <Link  to={`/contacts/${contact.id}`} state={contact}>
                     View
                   </Link>
                 </button>

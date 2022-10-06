@@ -5,7 +5,7 @@
       "firstName": "John",
       "lastName": "Carmack",
       "street": "10 Keen Street",
-      "city": "London",
+      "city": "Rome",
       "type": "work"
     },
     {
@@ -13,20 +13,39 @@
       "firstName": "Gin",
       "lastName": "Hopper",
       "street": "32 Deebug Road",
-      "city": "London",
+      "city": "Tokyo",
       "type": "work"
     },
     {
       "id": 3,
       "firstName": "Patrik",
       "lastName": "Ellini",
+      "type": "personal",
       "street": "Flat 23 Palmer house, Mornington Avenue",
       "city": "London",
       "email": "pk815@hotmail.it",
       "linkedIn": "",
-      "twitter": "",
-      "type": "personal"
+      "twitter": ""
+    },
+    {
+      "id": 4,
+      "firstName": "Alessandro",
+      "lastName": "Ellini",
+      "type": "personal",
+      "street": "Flat 23 Palmer house, Mornington Avenue",
+      "city": "London",
+      "email": "pk815@hotmail.it",
+      "linkedIn": "",
+      "twitter": ""
     }
   ],
-  "meetings": []
+  "meetings": [
+    {
+      "contactId": "4",
+      "time": "12",
+      "date": "02/01/2022",
+      "location": "london",
+      "id": 1
+    }
+  ]
 }
