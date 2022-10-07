@@ -30,23 +30,24 @@ function ContactsAdd(props) {
     e.preventDefault();
 
     if (contact.length) {
-      fetch(url, {
+      fetch(url + id, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstName: newContact.firstName,
-          lastName: newContact.lastName,
-          street: newContact.street,
-          city: newContact.city,
-          email: newContact.email,
-          linkedIn: newContact.linkedIn,
-          twitter: newContact.twitter,
+          firstName: contact.firstName,
+          lastName: contact.lastName,
+          street: contact.street,
+          city: contact.city,
+          email: contact.email,
+          linkedIn: contact.linkedIn,
+          twitter: contact.twitter,
         }),
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(contact)
           const newContacts = contacts.filter((element) => {
             return element.id !== parseInt(id);
           });
