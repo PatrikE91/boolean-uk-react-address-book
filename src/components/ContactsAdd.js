@@ -6,6 +6,7 @@ function ContactsAdd(props) {
   // to this component so new contacts can be added to the
   // state
   const { setContacts, contacts } = props;
+
   const navigate = useNavigate();
   const { id } = useParams();
   const url = "http://localhost:4000/contacts/";
@@ -23,7 +24,7 @@ function ContactsAdd(props) {
   const contact = contacts.filter((element) => {
     return element.id === parseInt(id);
   });
-
+  const [editContact, setEditContact] = useState([contact]);
   //TODO: Implement controlled form
   //send POST to json server on form submit
   const onSubmitEvent = (e) => {
@@ -36,18 +37,19 @@ function ContactsAdd(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstName: contact.firstName,
-          lastName: contact.lastName,
-          street: contact.street,
-          city: contact.city,
-          email: contact.email,
-          linkedIn: contact.linkedIn,
-          twitter: contact.twitter,
+          firstName: editContact.firstName,
+          lastName: editContact.lastName,
+          type: editContact.type,
+          street: editContact.street,
+          city: editContact.city,
+          email: editContact.email,
+          linkedIn: editContact.linkedIn,
+          twitter: editContact.twitter,
         }),
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(contact)
+          console.log(editContact);
           const newContacts = contacts.filter((element) => {
             return element.id !== parseInt(id);
           });
@@ -75,6 +77,7 @@ function ContactsAdd(props) {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data)
           setContacts([...contacts, data]);
           navigate("/");
         });
@@ -91,9 +94,11 @@ function ContactsAdd(props) {
         type="text"
         defaultValue={contact.length ? contact[0].firstName : null}
         required
-        onChange={(e) =>
-          setNewContact({ ...newContact, firstName: e.target.value })
-        }
+        onChange={(e) => {
+          contact.length
+            ? setEditContact({ ...editContact, firstName: e.target.value })
+            : setNewContact({ ...newContact, firstName: e.target.value });
+        }}
       />
 
       <label htmlFor="lastName">Last Name:</label>
@@ -103,9 +108,11 @@ function ContactsAdd(props) {
         type="text"
         defaultValue={contact.length ? contact[0].lastName : null}
         required
-        onChange={(e) =>
-          setNewContact({ ...newContact, lastName: e.target.value })
-        }
+        onChange={(e) => {
+          contact.length
+            ? setEditContact({ ...editContact, lastName: e.target.value })
+            : setNewContact({ ...newContact, lastName: e.target.value });
+        }}
       />
 
       <label htmlFor="type">Type:</label>
@@ -116,9 +123,11 @@ function ContactsAdd(props) {
           name="type"
           type="radio"
           value="personal"
-          onClick={(e) =>
-            setNewContact({ ...newContact, type: e.target.value })
-          }
+          onClick={(e) => {
+            contact.length
+              ? setEditContact({ ...editContact, type: e.target.value })
+              : setNewContact({ ...newContact, type: e.target.value });
+          }}
         />
         <p>Work</p>
         <input
@@ -126,9 +135,11 @@ function ContactsAdd(props) {
           name="type"
           type="radio"
           value="work"
-          onClick={(e) =>
-            setNewContact({ ...newContact, type: e.target.value })
-          }
+          onClick={(e) => {
+            contact.length
+              ? setEditContact({ ...editContact, type: e.target.value })
+              : setNewContact({ ...newContact, type: e.target.value });
+          }}
         />
       </div>
 
@@ -139,9 +150,11 @@ function ContactsAdd(props) {
         type="text"
         defaultValue={contact.length ? contact[0].street : null}
         required
-        onChange={(e) =>
-          setNewContact({ ...newContact, street: e.target.value })
-        }
+        onChange={(e) => {
+          contact.length
+            ? setEditContact({ ...editContact, street: e.target.value })
+            : setNewContact({ ...newContact, street: e.target.value });
+        }}
       />
 
       <label htmlFor="city">City:</label>
@@ -149,9 +162,13 @@ function ContactsAdd(props) {
         id="city"
         name="city"
         type="text"
-        defaultValue={contact.length ? contact[0].ctty : null}
+        defaultValue={contact.length ? contact[0].city : null}
         required
-        onChange={(e) => setNewContact({ ...newContact, city: e.target.value })}
+        onChange={(e) => {
+          contact.length
+            ? setEditContact({ ...editContact, city: e.target.value })
+            : setNewContact({ ...newContact, city: e.target.value });
+        }}
       />
 
       <label htmlFor="email">Email:</label>
@@ -160,9 +177,11 @@ function ContactsAdd(props) {
         name="email"
         type="text"
         defaultValue={contact.length ? contact[0].email : null}
-        onChange={(e) =>
-          setNewContact({ ...newContact, email: e.target.value })
-        }
+        onChange={(e) => {
+          contact.length
+            ? setEditContact({ ...editContact, email: e.target.value })
+            : setNewContact({ ...newContact, email: e.target.value });
+        }}
       />
 
       <label htmlFor="linkedIn">LinkedIn:</label>
@@ -171,9 +190,11 @@ function ContactsAdd(props) {
         name="linkedIn"
         type="text"
         defaultValue={contact.length ? contact[0].linkedIn : null}
-        onChange={(e) =>
-          setNewContact({ ...newContact, linkedIn: e.target.value })
-        }
+        onChange={(e) => {
+          contact.length
+            ? setEditContact({ ...editContact, linkedIn: e.target.value })
+            : setNewContact({ ...newContact, linkedIn: e.target.value });
+        }}
       />
 
       <label htmlFor="twitter">Twitter:</label>
@@ -182,9 +203,11 @@ function ContactsAdd(props) {
         name="twitter"
         type="text"
         defaultValue={contact.length ? contact[0].twitter : null}
-        onChange={(e) =>
-          setNewContact({ ...newContact, twitter: e.target.value })
-        }
+        onChange={(e) => {
+          contact.length
+            ? setEditContact({ ...editContact, twitter: e.target.value })
+            : setNewContact({ ...newContact, twitter: e.target.value });
+        }}
       />
 
       <div className="actions-section">

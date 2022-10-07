@@ -12,7 +12,6 @@ export default function App() {
 
   //TODO: Load all contacts on useEffect when component first renders
 
-  const sortFavorites = () => {};
 
   const getData = () => {
     fetch(`http://localhost:4000/contacts`)
@@ -24,6 +23,7 @@ export default function App() {
         setContacts(trueFirst);
       });
   };
+  
   useEffect(() => {
     getData();
   }, []);
